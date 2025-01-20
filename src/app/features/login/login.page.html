@@ -7,21 +7,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
   </ion-header>
- 
+
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
     <ion-item>
       <ion-label label="Floating label" position="floating">Email</ion-label>
-      <ion-input type="email" placeholder="email@gmail.com" required></ion-input>
+      <ion-input [(ngModel)]="email" type="email" placeholder="email@gmail.com" formControlName="email"
+        required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label label="Floating label" position="floating">Contraseña</ion-label>
-      <ion-input type="password" placeholder="Ingrese su contraseña" required></ion-input>
+      <ion-input [(ngModel)]="password" type="password" placeholder="Ingrese su contraseña" formControlName="password"
+        required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" routerLink="/dashboard" class="btn1">
+    <ion-button expand="block" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" class="btn1">
       Ingresar
     </ion-button>
+
+    <ion-text>
+      ¿No tienes una cuenta? <ion-button routerLink="/register">Registrate</ion-button>
+    </ion-text>
+
+    <div *ngIf="!loginForm.valid && loginForm.touched">
+      <ion-text color="danger">
+        Por favor, ingrese un correo electrónico y una contraseña válidos.
+      </ion-text>
+    </div>
   </form>
 </ion-content>

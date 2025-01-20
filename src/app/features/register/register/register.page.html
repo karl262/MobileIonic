@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingrese su nombre" formControlName="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Primer Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese su primer apellido" formControlName="firstLastName"
+        required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Segundo Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese su segundo apellido" formControlName="secondLastName"
+        required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" placeholder="Ingrese su correo electrónico" formControlName="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Contraseña</ion-label>
+      <ion-input type="password" placeholder="Ingrese su contraseña" formControlName="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label label="Floating label" position="floating">Confirmación de Contraseña</ion-label>
+      <ion-input type="password" placeholder="Confirme su contraseña" formControlName="confirmPassword"
+        required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!registerForm.valid" (click)="onSubmitRegister()" class="btn1">
+      Registrar
+    </ion-button>
+    <div *ngIf="!registerForm.valid && registerForm.touched">
+      <ion-text color="danger">
+        Por favor, complete los campos correctamente.
+      </ion-text>
+    </div>
+  </form>
+</ion-content>

@@ -6,6 +6,7 @@ import { CardsPage } from './features/dashboard/pages/cards/cards.page';
 import { ProductsPage } from './features/dashboard/pages/products/products/products.page';
 import { AlemaniaPage } from './features/dashboard/pages/pageTwo/alemania/alemania.page';
 import { FoodPage } from './features/dashboard/pages/food/food/food.page';
+import { RegisterPage } from './features/register/register/register.page';
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
     path: 'food',
     component: FoodPage,
     loadChildren: () => import('./features/dashboard/pages/food/food/food.module').then( m => m.FoodPageModule)
+  },
+  {
+    path: 'register',
+    component: RegisterPage,
+    loadChildren: () => import('./features/register/register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 
