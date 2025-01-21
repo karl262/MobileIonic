@@ -12,6 +12,9 @@ import { ToastController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   errorMessage: string | undefined;
+  email: string = 'carlos123@gmail.com';
+  password: string = 'carlos123';
+  confirmPassword: string = 'carlos123';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private toastController: ToastController) {
     this.registerForm = this.formBuilder.group({
@@ -27,8 +30,9 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmitRegister() {
-    if (this.registerForm.valid) {
-      this.router.navigate(['/login']);
+    this.validatePassword();
+    if (this.registerForm.valid && this.registerForm.get('email')?.value === this.email && this.registerForm.get('password')?.value === this.password) {
+      this.router.navigate(['login']);
     } else{
       this.errorMessage = 'Por favor, complete todos los campos';
     }
@@ -37,6 +41,7 @@ export class RegisterPage implements OnInit {
   validatePassword() {
     if (this.registerForm.get('password')?.value !== this.registerForm.get('confirmPassword')?.value) {
       this.errorMessage = 'Las contraseñas no coinciden';
+      this.passwordToast();
     } else {
       this.errorMessage = '';
     }
@@ -48,6 +53,16 @@ export class RegisterPage implements OnInit {
       duration: 2000,
       position : 'bottom',
       color: 'warning',
+    });
+    await toast.present();
+  }
+
+  async passwordToast() {
+    const toast = await this.toastController.create({
+      message: 'Las contraseñas no coinciden.',
+      duration: 2000,
+      position : 'bottom',
+      color: 'danger',
     });
     await toast.present();
   }

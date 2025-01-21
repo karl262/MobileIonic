@@ -41,8 +41,8 @@
         required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="!registerForm.valid" (click)="onSubmitRegister()" class="btn1">
-      Registrar
+    <ion-button expand="block" [disabled]="!registerForm.valid" class="btn1">
+      Ir a la página
     </ion-button>
     <div *ngIf="!registerForm.valid && registerForm.touched">
       <ion-text color="danger">
